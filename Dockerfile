@@ -9,13 +9,13 @@ RUN apk add --no-cache \
     postgresql-dev
 
 # Clone the wal2json repository
-RUN git clone https://github.com/eulerto/wal2json.git /usr/src/wal2json
+RUN git clone https://github.com/eulerto/wal2json.git ./wal2json
 
 # Build and install wal2json
-RUN cd /usr/src/wal2json && \
-    make && \
-    make install
+RUN cd /wal2json && \
+    USE_PGXS=1 make && \
+    USE_PGXS=1 make install
 
 # Clean up build dependencies
 RUN apk del build-base git postgresql-dev && \
-    rm -rf /usr/src/wal2json
+    rm -rf ./wal2json
