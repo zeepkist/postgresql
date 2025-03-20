@@ -18,6 +18,14 @@ RUN cd /wal2json && \
     USE_PGXS=1 make && \
     USE_PGXS=1 make install
 
+# Clone the HypoPG repository
+RUN git clone https://github.com/HypoPG/hypopg.git ./hypopg
+
+# Build and install HypoPG
+RUN cd /hypopg && \
+    USE_PGXS=1 make && \
+    USE_PGXS=1 make install
+
 # Clean up build dependencies
 RUN apk del build-base git postgresql-dev clang llvm && \
-    rm -rf ./wal2json
+    rm -rf ./wal2json ./hypopg
