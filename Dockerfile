@@ -10,6 +10,9 @@ RUN apk add --no-cache \
 	clang \
 	llvm
 
+# Create a symlink for clang-19 because wal2json's Makefile expects it
+RUN ln -s /usr/bin/clang /usr/bin/clang-19
+
 # Clone the wal2json repository
 RUN git clone https://github.com/eulerto/wal2json.git ./wal2json
 
