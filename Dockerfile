@@ -15,8 +15,8 @@ RUN git clone https://github.com/eulerto/wal2json.git ./wal2json
 
 # Build and install wal2json
 RUN cd /wal2json && \
-    USE_PGXS=1 make && \
-    USE_PGXS=1 make install
+    USE_PGXS=1 CC=gcc make && \
+    USE_PGXS=1 CC=gcc make install
 
 # Clean up build dependencies
 RUN apk del build-base git postgresql-dev clang llvm && \
